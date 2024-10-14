@@ -9,14 +9,13 @@ body {
 
 .coffees-slider {
     width: 100%;
-    /* border: 1px solid red; */
     height: var(--height);
     overflow: hidden;
     position: relative;
+    display: block;
 }
 
 .coffees-slider .coffees {
-    /* display: flex; */
     width: 100%;
     height: auto;
     min-width: calc(var(--width) * var(--quantity));
@@ -44,4 +43,35 @@ body {
     to {
         left: calc(var(--width) * -1);
     }
+}
+
+/* add grayscale to all images */
+.coffee-img {
+    filter: grayscale(1);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* when the slider is hovered, pause the slider */
+.coffees-slider:hover .coffees .coffee {
+    animation-play-state: paused!important;
+}
+
+/* when an image is hovered, remove the grayscale from the hovered image */
+.coffee-img:hover {
+    filter: grayscale(0);
+}
+
+/* when an image is hovered, make the other images gray */
+.coffees-slider:hover .coffee-img {
+    filter: grayscale(1);
+}
+
+/* the hovered image is excluded from the grayscale filter */
+.coffees-slider:hover .coffee-img:hover {
+    filter: grayscale(0);
+}
+
+.description {
+    text-align: center;
+    display: none;
 }
