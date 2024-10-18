@@ -7,12 +7,19 @@ body {
     align-items: center;
 }
 
+/* 
+
+Hot-Coffee-Slider
+
+*/
+
 .coffees-slider {
     width: 100%;
     height: var(--height);
     overflow: hidden;
     position: relative;
     display: block;
+    margin: 50px;
 }
 
 .coffees-slider .coffees {
@@ -34,15 +41,6 @@ body {
 
 .coffees-slider .coffees .coffee img{
     width: 100%;
-}
-
-@keyframes autoRun {
-    from {
-        left: 100%;
-    }
-    to {
-        left: calc(var(--width) * -1);
-    }
 }
 
 /* add grayscale to all images */
@@ -70,6 +68,91 @@ body {
 .coffees-slider:hover .coffee-img:hover {
     filter: grayscale(0);
 }
+
+/* 
+
+Iced-Coffee-Slider
+
+*/
+
+.iced-coffees-slider {
+    width: 100%;
+    height: var(--height);
+    overflow: hidden;
+    position: relative;
+    display: block;
+    margin: 50px;
+}
+
+.iced-coffees-slider .iced-coffees {
+    width: 100%;
+    height: auto;
+    min-width: calc(var(--width) * var(--quantity));
+    position: absolute;
+    right: 0;
+}
+
+.iced-coffees-slider .iced-coffees .iced-coffee {
+    width: var(--width);
+    height: var(--height);
+    position: absolute;
+    left: 100%;
+    animation: autoRun 6s linear infinite;
+    animation-delay: calc((6s/var(--quantity)) * (var(--position) - 1));
+}
+
+.iced-coffees-slider .iced-coffees .iced-coffee img{
+    width: 100%;
+    height: 91%;
+}
+
+/* add grayscale to all images */
+.iced-coffee-img {
+    filter: grayscale(1);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* when the slider is hovered, pause the slider */
+.iced-coffees-slider:hover .iced-coffees .iced-coffee {
+    animation-play-state: paused!important;
+}
+
+/* when an image is hovered, remove the grayscale from the hovered image */
+.iced-coffee-img:hover {
+    filter: grayscale(0);
+}
+
+/* when an image is hovered, make the other images gray */
+.iced-coffees-slider:hover .coffee-img {
+    filter: grayscale(1);
+}
+
+/* the hovered image is excluded from the grayscale filter */
+.iced-coffees-slider:hover .iced-coffee-img:hover {
+    filter: grayscale(0);
+}
+
+/* 
+
+Animation 
+
+*/
+
+@keyframes autoRun {
+    from {
+        left: 100%;
+    }
+    to {
+        left: calc(var(--width) * -1);
+    }
+}
+
+
+/* 
+
+Description 
+
+*/
 
 .description {
     text-align: center;
